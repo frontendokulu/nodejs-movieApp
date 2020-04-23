@@ -11,8 +11,13 @@ const MovieSchema = new Schema({
     country : String,
     year : Number,
     imdb_score : Number,
-    date : Date,
-    default : Date.now
+    date : {
+        type: Date,
+        default : Date.now
+    }
 });
 
-module.exports = mongoose.model('movie',MovieSchema);
+mongoose.Promise = global.Promise;
+
+
+module.exports = mongoose.model('Movie',MovieSchema);
