@@ -68,7 +68,7 @@ router.post('/', (req, res, next) => {
   });
 });
 
-/* Update ById Movies */
+/* Update ById Movie */
 router.put('/:movie_id',(req, res, next) =>{
   const promise = Movie.findByIdAndUpdate(
     req.params.movie_id,
