@@ -13,6 +13,12 @@ const app = express();
 //db connection, vays
 // sondaki 2 parantez sayfadaki fonksiyonu çalıştırmak içn kullanılıyor
 const db = require('./helper/db')();
+// token anahtarının bulunduğu ayar dosyası
+const config = require('./config');
+//global kullanım için app set yapıldı
+app.set('api_secret_key',config.api_secret_key);
+//middleware dosyası, token için
+const verifyToken = require('./middleware/verifyToken');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -25,6 +31,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/api', verifyToken);
 app.use('/api/movies', moviesRouter);
 app.use('/api/directors', directorsRouter);
 
