@@ -106,7 +106,7 @@ router.delete('/:movie_id',(req, res, next) =>{
     if (!movie) {
       next({message: 'The movie was not found', code: 99});
     }
-    res.json({status : 'Film Silindi'});
+    res.json({status : 1});
   }).catch((err) =>{
     res.json(err);
   });
